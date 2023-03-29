@@ -25,6 +25,8 @@ jobs:
 
     - name: Compile Module
       run: |
+       ls
+       cd typescript-generator
        echo $PWD
        mvn clean install -DskipTests -pl typescript-generator-core -am
 
