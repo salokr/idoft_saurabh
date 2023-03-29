@@ -11,7 +11,19 @@ jobs:
 
     steps:
     - name: Checkout
-      uses: actions/checkout@v2
+      uses: actions/checkout@v3
+    # clone the test's repo
+    - name: Clone Repo
+      run: |
+        cd ~
+        git clone https://github.com/vojtechhabarta/typescript-generator
+        cd typescript-generator
+      
+      # print the latest commit
+    - name: Print Commit Hash
+      run: |
+        cd ~/typescript-generator
+        git rev-parse HEAD
 
     - name: Install Maven
       run: sudo apt-get update && sudo apt-get install -y maven
