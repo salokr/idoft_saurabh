@@ -26,7 +26,7 @@ jobs:
     - name: Compile Module
       run: |
        echo $PWD
-       run: mvn clean install -DskipTests -pl typescript-generator-core -am
+       mvn clean install -DskipTests -pl typescript-generator-core -am
 
     - name: Run Test
       run: mvn -pl typescript-generator-core test -Dtest=cz.habarta.typescript.generator.TaggedUnionsTest#testTaggedUnionsWithInterfaces
