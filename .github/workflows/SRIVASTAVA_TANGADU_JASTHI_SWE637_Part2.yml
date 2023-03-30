@@ -23,7 +23,7 @@ jobs:
         cd nifi
         echo $PWD
         mvn clean install -DskipTests -pl nifi-nar-bundles/nifi-standard-bundle/nifi-standard-processors -am
-        - name: Run Test
+        #- name: Run Test
         mvn -pl nifi-nar-bundles/nifi-standard-bundle/nifi-standard-processors test -Dtest=org.apache.nifi.processors.standard.TestQueryRecord#testAggregateFunction
-        - name: Run NonDex
+        #- name: Run NonDex
         mvn -pl nifi-nar-bundles/nifi-standard-bundle/nifi-standard-processors edu.illinois:nondex-maven-plugin:2.1.1:nondex -Dtest=org.apache.nifi.processors.standard.TestQueryRecord#testAggregateFunction
