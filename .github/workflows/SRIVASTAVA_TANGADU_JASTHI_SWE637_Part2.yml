@@ -1,29 +1,33 @@
-name: Part 2: SRIVASTAVA_TANGADU_JASTHI
-
+---
+name: Part 2_SRIVASTAVA_TANGADU_JASTHI
 on:
   push:
     branches:
       - main
-
 jobs:
   flaky-test-check:
     runs-on: ubuntu-latest
-
     steps:
-    - name: Install Maven
-      run: sudo apt-get update && sudo apt-get install -y maven
+      - name: Install Maven
+        run: sudo apt-get update && sudo apt-get install -y maven
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Clone Repo
+        run: >
+          cd ~
 
-    - name: Checkout
-      uses: actions/checkout@v3
-    # clone the test's repo
-    - name: Clone Repo
-      run: |
-        cd ~
-        git clone https://github.com/apache/nifi
-        cd nifi
-        echo $PWD
-        mvn clean install -DskipTests -pl nifi-nar-bundles/nifi-standard-bundle/nifi-standard-processors -am
-        #- name: Run Test
-        mvn -pl nifi-nar-bundles/nifi-standard-bundle/nifi-standard-processors test -Dtest=org.apache.nifi.processors.standard.TestQueryRecord#testAggregateFunction
-        #- name: Run NonDex
-        mvn -pl nifi-nar-bundles/nifi-standard-bundle/nifi-standard-processors edu.illinois:nondex-maven-plugin:2.1.1:nondex -Dtest=org.apache.nifi.processors.standard.TestQueryRecord#testAggregateFunction
+          git clone https://github.com/apache/nifi
+
+          cd nifi
+
+          echo $PWD
+
+          mvn clean install -DskipTests -pl nifi-nar-bundles/nifi-standard-bundle/nifi-standard-processors -am
+
+          - name: Run Test
+
+          mvn -pl nifi-nar-bundles/nifi-standard-bundle/nifi-standard-processors test -Dtest=org.apache.nifi.processors.standard.TestQueryRecord#testAggregateFunction
+
+          - name: Run NonDex
+
+          mvn -pl nifi-nar-bundles/nifi-standard-bundle/nifi-standard-processors edu.illinois:nondex-maven-plugin:2.1.1:nondex -Dtest=org.apache.nifi.processors.standard.TestQueryRecord#testAggregateFunction
